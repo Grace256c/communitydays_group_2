@@ -1,0 +1,55 @@
+{
+  "title": "Agriculture App",
+  "theme": "Agriculture",
+  "entity": "garden",
+  "plural": "gardens",
+  "registerLabel": "Register garden",
+  "followUpLabel": "Record a garden visit",
+  "registrationForm": "group_2_registration",
+  "followUpForm": "group_2_followup",
+  "description": "Meet local growers and watch their gardens grow, one visit at a time.",
+  "accent": "#45651f",
+  "background": "#f3f7e9",
+  "columns": [
+    {
+      "key": "name",
+      "label": "Garden name"
+    },
+    {
+      "key": "crop",
+      "label": "Main crop"
+    },
+    {
+      "key": "location",
+      "label": "Location"
+    }
+  ],
+  "registrationFields": [
+    {
+      "key": "name",
+      "label": "Garden name"
+    },
+    {
+      "key": "crop",
+      "label": "Main crop"
+    },
+    {
+      "key": "location",
+      "label": "Location"
+    }
+  ],
+  "followUpFields": [
+    {
+      "key": "condition",
+      "label": "Crop condition"
+    },
+    {
+      "key": "harvest",
+      "label": "Harvest in kilograms"
+    },
+    {
+      "key": "notes",
+      "label": "Visit notes"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "VerticalLayout",
+  "elements": [
+    {
+      "type": "Control",
+      "scope": "#/properties/name",
+      "label": "Garden name"
+    },
+    {
+      "type": "Control",
+      "scope": "#/properties/crop",
+      "label": "Main crop"
+    },
+    {
+      "type": "Control",
+      "scope": "#/properties/location",
+      "label": "Location"
+    }
+  ]
+}

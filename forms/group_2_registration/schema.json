@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Garden name",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "crop": {
+      "type": "string",
+      "title": "Main crop",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "location": {
+      "type": "string",
+      "title": "Location",
+      "minLength": 1,
+      "maxLength": 240
+    }
+  },
+  "required": [
+    "name",
+    "crop",
+    "location"
+  ]
+}
