@@ -1,1 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 180" style="color:#45651f"><circle cx="110" cy="90" r="86" fill="#f3f7e9"/><path d="M30 145h160" stroke="#966444" stroke-width="12" stroke-linecap="round"/><path d="M110 140V62" stroke="currentColor" stroke-width="8"/><path d="M106 107C49 110 48 59 48 59c53-2 61 27 58 48Zm8-24c-3-47 55-49 55-49s9 48-55 49Z" fill="currentColor"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 180" style="color:#2F5D34">
+  <circle cx="110" cy="90" r="86" fill="#E7F0DF"/>
+  <path
+    d="M30 145h160"
+    stroke="#9A6846"
+    stroke-width="12"
+    stroke-linecap="round"
+  />
+  <path
+    d="M110 140V62"
+    stroke="currentColor"
+    stroke-width="8"
+  />
+  <path
+    d="M106 107C49 110 48 59 48 59c53-2 61 27 58 48Zm8-24c-3-47 55-49 55-49s9 48-55 49Z"
+    fill="currentColor"
+  />
+</svg>

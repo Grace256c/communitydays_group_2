@@ -7,9 +7,9 @@
   "followUpLabel": "Record a garden visit",
   "registrationForm": "group_2_registration",
   "followUpForm": "group_2_followup",
-  "description": "Meet local growers and watch their gardens grow, one visit at a time.",
-  "accent": "#45651f",
-  "background": "#f3f7e9",
+  "description": "Welcome to the ODE Community Days garden space. Register gardens, record visits, and follow their progress across Kampala.",
+  "accent": "#0B7A5A",
+  "background": "#F4F7F1",
   "columns": [
     {
       "key": "name",
