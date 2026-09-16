@@ -15,6 +15,11 @@
       "type": "Control",
       "scope": "#/properties/location",
       "label": "Location"
+    },
+    {
+      "type": "Control",
+      "scope": "#/properties/description",
+      "label": "Garden description (optional)"
     }
   ]
 }

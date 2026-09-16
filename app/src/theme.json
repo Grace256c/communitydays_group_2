@@ -36,6 +36,10 @@
     {
       "key": "location",
       "label": "Location"
+    },
+    {
+      "key": "description",
+      "label": "Garden description"
     }
   ],
   "followUpFields": [

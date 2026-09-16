@@ -19,6 +19,11 @@
       "title": "Location",
       "minLength": 1,
       "maxLength": 240
+    },
+    "description": {
+      "type": "string",
+      "title": "Garden description",
+      "maxLength": 120
     }
   },
   "required": [
