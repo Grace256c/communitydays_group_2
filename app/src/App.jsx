@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Route, Routes, useParams } from 'react-router-dom';
 import config from './theme.json';
 import useObservations from './useObservations.js';
@@ -24,11 +24,23 @@ function Fields({ fields, data }) {
 function RecordPage() {
   const { entityId } = useParams();
   const { api, registrations, followUps, loading, error, formError, opening, refresh, openForm } = useObservations(entityId);
+  const [searchTerm, setSearchTerm] = useState('');
+
   const record = registrations.find((item) => item.observationId === entityId);
   const disabled = !api || opening;
   const registrationFields = config.registrationFields.some(({ key }) => key === 'name')
     ? config.registrationFields
     : [{ key: 'name', label: 'Name' }, ...config.registrationFields];
+
+  const normalizedSearch = searchTerm.trim().toLowerCase();
+
+  const filteredRegistrations = normalizedSearch
+    ? registrations.filter((item) =>
+        String(item.data?.name ?? '')
+          .toLowerCase()
+          .includes(normalizedSearch)
+      )
+    : registrations;
 
   useEffect(() => {
     document.title = entityId ? `${config.entity} details · ${config.title}` : config.title;
@@ -66,22 +78,79 @@ function RecordPage() {
         )}
         {formError && <p className="error" role="alert">Could not complete the form. {formError} Please try the form button again.</p>}
         {!entityId ? (
-          registrations.length > 0 ? (
-            <div className="table-scroll" role="region" aria-label={`${config.plural} list`} tabIndex={0}>
-              <table>
-                <caption>Saved {config.plural}</caption>
-                <thead><tr>{config.columns.map(({ key, label }) => <th scope="col" key={key}>{label}</th>)}<th scope="col">Details</th></tr></thead>
-                <tbody>
-                  {registrations.map((item) => (
-                    <tr key={item.observationId}>
-                      {config.columns.map(({ key }) => <td key={key}>{display(item.data?.[key])}</td>)}
-                      <td><Link className="detail-link" to={`/details/${encodeURIComponent(item.observationId)}`} aria-label={`View details for ${display(item.data?.name)}`}>View details →</Link></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : !loading && !error && api && <p className="empty">No {config.plural} yet. Select “{config.registerLabel}” to get started.</p>
+          <>
+            {registrations.length > 0 && (
+              <div className="search-field">
+                <label htmlFor="garden-search">
+                  Search gardens
+                </label>
+                <input
+                  id="garden-search"
+                  type="search"
+                  value={searchTerm}
+                  onChange={(event) => setSearchTerm(event.target.value)}
+                  placeholder="Search by garden name"
+                  autoComplete="off"
+                />
+              </div>
+            )}
+
+            {registrations.length > 0 ? (
+              filteredRegistrations.length > 0 ? (
+                <div
+                  className="table-scroll"
+                  role="region"
+                  aria-label={`${config.plural} list`}
+                  tabIndex={0}
+                >
+                  <table>
+                    <caption>Saved {config.plural}</caption>
+                    <thead>
+                      <tr>
+                        {config.columns.map(({ key, label }) => (
+                          <th scope="col" key={key}>{label}</th>
+                        ))}
+                        <th scope="col">Details</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {filteredRegistrations.map((item) => (
+                        <tr key={item.observationId}>
+                          {config.columns.map(({ key }) => (
+                            <td key={key}>
+                              {display(item.data?.[key])}
+                            </td>
+                          ))}
+                          <td>
+                            <Link
+                              className="detail-link"
+                              to={`/details/${encodeURIComponent(item.observationId)}`}
+                              aria-label={`View details for ${display(item.data?.name)}`}
+                            >
+                              View details →
+                            </Link>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p className="empty" role="status">
+                  No gardens match “{searchTerm.trim()}”.
+                </p>
+              )
+            ) : (
+              !loading &&
+              !error &&
+              api && (
+                <p className="empty">
+                  No {config.plural} yet. Select “{config.registerLabel}” to get started.
+                </p>
+              )
+            )}
+          </>
         ) : record ? (
           <>
             <Fields fields={registrationFields} data={record.data} />
